@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-# tuple as recorder and unmutable sequence
+# tuple as recorder and inmutable sequence
 names = ["cyc", "jane", "Easta"]
 score = [85, 90, 87]
 score_list = [x for x in zip(names, score)]
