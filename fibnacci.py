@@ -1,7 +1,9 @@
 import sys
 import time
+import functools
 sys.setrecursionlimit(1000)
 results = dict()
+
 
 def timing(func):
     def func_wrapper(n):
@@ -12,27 +14,44 @@ def timing(func):
         return result
     return func_wrapper
 
+def cache(func):
+    results = {}
+    def func_wrapper(n):
+        if n in results: return results[n]
+        else:
+            result = func(n)
+            results[n] = result
+            return result
+    return func_wrapper
+
+
 @timing
+def fib1_wrapper(n):
+    return fib1(n)
+
 def fib1(n):
     if n == 1:
-        results.update({1:0})
+        results.update({1: 0})
         return 0
     if n == 2:
-        results.update({2:1})
+        results.update({2: 1})
         return 1
-    if results.get(n): return results.get(n)
+    if n in results:
+        return results[n]
     else:
         result = fib1(n - 1) + fib1(n - 2)
-        results.update({n:result})
+        results.update({n: result})
         return result
 
+@timing
+@functools.lru_cache()
 def fib2(n):
     if n == 1: return 0
     if n == 2: return 1
     else:
         return fib2(n-1) + fib2(n-2)
 
-print(fib1(30))
-print(fib1(40))
-print(fib1(80))
+print(fib2(30))
+print(fib2(40))
+
 
