@@ -41,6 +41,9 @@ def cache(func):
 
 @timing
 def fib1(n):
+    if n == 0:
+        results.update({0: 0})
+
     if n == 1:
         results.update({1: 0})
         return 0
@@ -58,6 +61,7 @@ def fib1(n):
 @functools.lru_cache()
 @counter
 def fib2(n):
+    if n == 0: return 0
     if n == 1: return 0
     if n == 2: return 1
     else:
