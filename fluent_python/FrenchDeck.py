@@ -1,11 +1,12 @@
 import collections
+import random
 Card = collections.namedtuple("Card",['rank','suit'])
 
 
 # implement __getitem__ and __len__ to make class as sequence object
 class FrenchDeck:
-    ranks = [str(x) for x in range(2, 11)] + list('AJQK')
-    suits = 'spades diamonds clubs hearts'.split(' ')
+    ranks = [str(x) for x in range(2, 11)] + list('JQKA')
+    suits = '方片 黑桃 梅花 红桃'.split(' ')
     cards = []
 
     def __init__(self):
@@ -16,10 +17,12 @@ class FrenchDeck:
 
     def __len__(self):
         return len(self.cards)
+    suits_priority = {'黑桃':4,'红桃':3,'梅花':2, '方片':1}
 
+    def rank_high(self, card):
+        return self.ranks.index(card.rank) + 100 * self.suits_priority[card.suit]
 
 deck = FrenchDeck()
-for card in reversed(deck):  # deck is sequence object, so we can use reverse method
-    print(card)
 
-print(Card('7', 'hearts') in deck)
+for card in sorted(deck, key=deck.rank_high, reverse=True):
+    print(card)
