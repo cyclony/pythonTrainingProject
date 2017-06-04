@@ -1,6 +1,8 @@
 import sys
 import time
 import functools
+import itertools
+
 sys.setrecursionlimit(1000)
 results = dict()
 counts = dict()
@@ -29,13 +31,12 @@ def timing(func):
 
 # decorator function，模拟functions.lru_cache 对被装饰的函数执行结果进行缓存，一旦调用结果被缓存命中，则执行返回缓存数据
 def cache(func):
-    results = {}
+    result_dic = {}
     def func_wrapper(n):
-        if n in results: return results[n] # 命中缓存，直接返回之前调用生成的结果
-        else:                               # 没有命中，则调用原函数执行，并对结果进行缓存
+        if n not in result_dic: #  没有命中，则调用原函数执行，并对结果进行缓存
             result = func(n)
-            results[n] = result
-            return result
+            result_dic[n] = result
+        return result_dic[n]  # 命中缓存，直接返回之前调用生成的结果
     return func_wrapper
 
 
@@ -70,7 +71,20 @@ def fib2(n):
 fib2(20)
 print(counts)
 print(sum(counts.values()))
-#print(timing(fib2)(300))
-#print(timing(fib1)(200))
 
 
+#  仅仅使用generator函数，就能方便的实现fibonacci数列
+def fib_gen():
+    a = 0
+    b = 1
+    while True:
+        a, b = b, a + b
+        yield b
+
+
+def fib_list(n):
+    return list(itertools.islice(fib_gen(), n+1))
+
+
+def fib3(n):
+    return list(itertools.islice(fib_gen(), n+1))[n-1]
