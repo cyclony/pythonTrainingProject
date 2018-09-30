@@ -4,7 +4,7 @@ class Sentence:
         self.s = s
 
     def __iter__(self):
-        for word in self.s.split():# lazy version
+        for word in self.s.split():#yield keyword to tell python this function is a generator.
             yield word
 
 
@@ -14,3 +14,5 @@ it = iter(s)
 print(next(it))
 print(next(it))
 print(next(it))
+for word in s:
+    print(word)
