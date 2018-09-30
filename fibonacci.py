@@ -28,7 +28,6 @@ def timing(func):
         return result
     return func_wrapper
 
-
 # decorator function，模拟functions.lru_cache 对被装饰的函数执行结果进行缓存，一旦调用结果被缓存命中，则执行返回缓存数据
 def cache(func):
     result_dic = {}
@@ -44,7 +43,6 @@ def cache(func):
 def fib1(n):
     if n == 0:
         results.update({0: 0})
-
     if n == 1:
         results.update({1: 0})
         return 0
@@ -88,3 +86,4 @@ def fib_list(n):
 
 def fib3(n):
     return list(itertools.islice(fib_gen(), n+1))[n-1]
+
