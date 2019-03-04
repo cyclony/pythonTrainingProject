@@ -16,7 +16,7 @@ ax1.set_title('x^2 function graph demo')
 ax1.plot(X,Y)
 ax1.grid(True) #添加网格线
 
-#log 函数图像
+# log 函数图像
 Y = np.log(X)
 ax2.plot(X,Y)
 ax2.grid(True)

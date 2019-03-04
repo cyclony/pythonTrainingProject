@@ -66,7 +66,5 @@ def fib2(n):
 fib2(20)
 print(counts)
 print(sum(counts.values()))
-#print(timing(fib2)(300))
-#print(timing(fib1)(200))
 
 

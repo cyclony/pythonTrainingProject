@@ -1,4 +1,4 @@
-#yield相当于声明一个function是一个generator类，其行为类似一个iterator
+#yield相当于声明一个function是一个generator函数，其行为类似一个iterator
 import collections
 def generator_test(lists):
     for x in lists:
@@ -6,6 +6,8 @@ def generator_test(lists):
         else:yield x
 
 aa = [1,2,[3,4,[3,4]]]
+# for x in generator_test(aa):
+#         print(x)
 
 
 a=[1,0,3,4,0,5]
@@ -17,8 +19,8 @@ def fun():
 
 
 
-for i,  in enumerate(aa):
-    print(i)
+for i,x  in enumerate(a):
+    print(i,x)
 
 for x in fun():
     print(x)

@@ -1,16 +1,25 @@
-def fib(n):#定义一个递归过程实现
+import functools
+import operator
+
+
+def factorial(n):  # 定义一个递归过程实现
     if n == 1: return 1
-    return fib(n-1) * n
+    return factorial(n - 1) * n
 
-print(fib(5))
+print(factorial(5))
 
-def fib1(n): #定义一个迭代过程实现
-    def iter_fib(total, n, i):
+
+def factorial1(n):  # 定义一个迭代过程实现
+    def iter_fact(total, n, i):
         total = total * i
         if i == n: return total
         else:
-            return iter_fib(total, n, i+1)
-    return iter_fib(1, n, 1)
+            return iter_fact(total, n, i+1)
+    return iter_fact(1, n, 1)
 
-print(fib1(10))
+
+# 使用reduce来累计计算乘积，求得阶乘（不需要使用递归)
+def factorial2(n):
+    return functools.reduce(operator.mul, range(1, n+1))
+print(factorial1(10))
 
