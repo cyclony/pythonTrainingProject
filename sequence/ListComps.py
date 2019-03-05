@@ -37,3 +37,5 @@ my_list = [(x,y,z) for x in range(3) for y in 'ABC' for z in [40, 50, 60]]
 
 for _,x,_ in my_list:
     print(x)
+
+print([x*y for x,y in zip([x for x in range(10)], [y for y in range(10)])])

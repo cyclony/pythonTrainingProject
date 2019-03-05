@@ -1,5 +1,6 @@
 import collections
-import random
+import itertools
+
 Card = collections.namedtuple("Card",['rank','suit'])
 
 
@@ -7,10 +8,10 @@ Card = collections.namedtuple("Card",['rank','suit'])
 class FrenchDeck:
     ranks = [str(x) for x in range(2, 11)] + list('JQKA')
     suits = '方片 黑桃 梅花 红桃'.split(' ')
-    cards = []
 
     def __init__(self):
-        self.cards = [Card(x, y) for x in self.ranks for y in self.suits]
+#        self.cards = [Card(x, y) for x in self.ranks for y in self.suits]
+        self.cards = [Card(x,y) for x,y in itertools.product(self.ranks, self.suits)]
 
     def __getitem__(self, item):  # make object iterable like for loop, [] operated etc.
         return self.cards[item]
