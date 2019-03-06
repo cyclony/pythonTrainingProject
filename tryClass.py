@@ -22,7 +22,7 @@ class myList(list):
         list.append(self,obj)   #调用父类方法（需要显式传递self参数
         self.total = obj + self.total
 
-print (myList())
+print(myList())
 
 l = myList()
 l.append(3)

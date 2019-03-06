@@ -21,3 +21,4 @@ print(s1 < s2)
 
 #是否是其中的元素
 print(1 in s1)
+
