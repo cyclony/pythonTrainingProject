@@ -4,11 +4,11 @@ class ListNode:
         self.next = None
 
     def __iter__(self):
-        dum_node = ListNode(0)
-        dum_node.next = self
-        while dum_node.next!= None:
-            yield dum_node.next.val
-            dum_node.next = dum_node.next.next
+        #初始化一个cursor结点，作为游标移动
+        cur_node = self
+        while cur_node!= None:
+            yield cur_node.val
+            cur_node = cur_node.next
 
     def __repr__(self):
         return '->'.join(str(x) for x in self)
@@ -16,10 +16,10 @@ class ListNode:
 
     @staticmethod
     def initial(*xs):
-        dummy_head = cur = ListNode(0)
+        dummy_head = cur_node = ListNode(0) #初始化一个头结点和游标
         for x in xs:
-            cur.next = ListNode(x)
-            cur = cur.next
+            cur_node.next = ListNode(x)
+            cur_node = cur_node.next
         return dummy_head.next
 
 
@@ -46,13 +46,10 @@ n2.next = ListNode(6)
 n2.next.next = ListNode(3)
 
 node = Solution().addTwoNumbers(n1, n2)
-while node!= None:
-    print(node.val)
-    node=node.next
 
 n3 = ListNode(0)
-n3 = ListNode.initial(3,4,5,6,7)
-n4 = ListNode.initial(5,3,6,7,8,3)
+n3 = ListNode.initial(0)
+n4 = ListNode.initial(0)
 print(n3)
 print(n4)
 print(Solution().addTwoNumbers(n3, n4))
