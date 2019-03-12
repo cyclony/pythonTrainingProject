@@ -37,13 +37,26 @@ class Solution:
             prev_node.next = next_node
         return head
 
+    def removeNode(self, prev_node, current_node, n):#使用递归来处理，一遍就可以删掉
+        if current_node.next != None:#
+            self.removeNode(current_node, current_node.next, n)
+        self.i += 1
+        if self.i == n:
+            prev_node.next = current_node.next
+
+    def removeNthFromEnd2(self, head: ListNode, n: int) -> ListNode:
+        self.i = 0
+        dummy_head = ListNode(0)#构建一个dummy头结点，减少代码量
+        dummy_head.next = head
+        self.removeNode(dummy_head, dummy_head.next, n)
+        return dummy_head.next
+
+        return head
 
 head = ListNode(0)
 head.initial([1,2])
-for i in head:
-    print(i)
 print(head)
-print(Solution().removeNthFromEnd(head,1))
+print(Solution().removeNthFromEnd2(head,2))
 
 
 
