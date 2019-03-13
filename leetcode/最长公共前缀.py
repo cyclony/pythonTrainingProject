@@ -35,16 +35,12 @@ class trieNode:
 
 
 class Solution:
-    def eq(self, x, items):
-        for item in items:
-            if x != item: return False
-        return True
 
     def longestCommonPrefix(self, strs) -> str:
         zipped_list = zip(*strs)
         result = ''
         for x,*items in zipped_list:
-            if self.eq(x,items): result += x
+            if all(x==a for a in items): result += x
             else: break
         return result
 
@@ -61,7 +57,16 @@ strs = ['spow','spoer','spowlish']
 root = trieNode('root')
 for str in strs:
     root.addNodes(str)
-root.treeShow()
 print(Solution().longestCommonPrefix(strs))
 print(Solution().longestCommonPrefix2(strs))
+
+def reverse(n):
+    s = ''.join(reversed(str(n)))
+    if s[-1] == '-': s = '-'+s[:-1]
+    result = int(s)
+    if result>2**31-1 or result < -2**31: return 0
+    return result
+
+
+
 
