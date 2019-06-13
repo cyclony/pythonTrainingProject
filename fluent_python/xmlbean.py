@@ -46,11 +46,12 @@ class xmlbean:
                 return xmlbean(result[0])
         raise AttributeError('does not exist such attr: '+name)
 
-doc = xml_Doc(data)
-root = doc.get_root()
-print('title', 'artist', 'country', sep='\t\t\t')
-for cd in root.cd:
-    cd.artist = 'cyc'
-    print(cd.artist)
+if __name__ == '__main__':
+    doc = xml_Doc(data)
+    root = doc.get_root()
+    print('title', 'artist', 'country', sep='\t\t\t')
+    for cd in root.cd:
+        cd.artist = 'cyc'
+        print(cd.title, cd.artist, sep='\t\t')
 
-print(etree.tostring(doc.root.xml_element))
+    print(etree.tostring(doc.root.xml_element))
